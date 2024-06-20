@@ -13,7 +13,7 @@ public class InfluxConfig {
     private String influxUserName="InternetOfThings";
     @Value("${influx.password}")
     private String influxPassword="veljko";
-    private String token="6UWn5HDKf1E6lzSYzdvYf-XEyex-fy4gDOsTRW0NSqNi3rvKtlCqxe104xB-qciBAyc8SdLbEDzlczLjEpKlXA==";
+    private String token="FjhlzAOR_CAmLxUi2zovxfr7DjpQVRSV1No6sQ9vbGWYbyOH_eoWSaYyEOQaxL_G34akQZsO_qUijcy4Serujg==";
     private String bucket="AirQualityData";
     private String org="IotOrg";
     @Bean
