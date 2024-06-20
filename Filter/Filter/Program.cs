@@ -55,5 +55,6 @@ foreach (var weekData in groupedData)
 {
    // Console.WriteLine(groupedData.Count());
         connection.Publish(sub1, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(weekData)));
+    
         Console.WriteLine(weekData);
 }

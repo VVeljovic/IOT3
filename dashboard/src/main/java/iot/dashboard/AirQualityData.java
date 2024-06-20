@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.influxdb.annotations.Column;
 import com.influxdb.annotations.Measurement;
 
-@Measurement(name="airquality")
+@Measurement(name="air_quality")
 public class AirQualityData {
     @Column
     @JsonProperty("Date")
@@ -53,7 +53,7 @@ public class AirQualityData {
     }
 
     public void setDate(String date) {
-        date = date;
+        this.date = date;
     }
 
     public float getAverageCO() {
