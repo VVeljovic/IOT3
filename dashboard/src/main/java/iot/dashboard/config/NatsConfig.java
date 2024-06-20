@@ -1,4 +1,4 @@
-package iot.dashboard;
+package iot.dashboard.config;
 
 import io.nats.client.Connection;
 import io.nats.client.Nats;

@@ -1,47 +1,51 @@
 package iot.dashboard;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.influxdb.annotations.Column;
+import com.influxdb.annotations.Measurement;
 
+@Measurement(name="airquality")
 public class AirQualityData {
+    @Column
     @JsonProperty("Date")
     private String date;
-
+    @Column
     @JsonProperty("Average_CO")
     private float averageCO;
-
+    @Column
     @JsonProperty("Average_PT08S1_CO")
     private float averagePT08S1CO;
-
+    @Column
     @JsonProperty("Average_NMHC_GT")
     private float averageNMHCGT;
-
+    @Column
     @JsonProperty("Average_C6H6_GT")
     private float averageC6H6GT;
-
+    @Column
     @JsonProperty("Average_PT08S2_NMHC")
     private float averagePT08S2NMHC;
-
+    @Column
     @JsonProperty("Average_NOx_GT")
     private float averageNOxGT;
-
+    @Column
     @JsonProperty("Average_PT08S3_NOx")
     private float averagePT08S3NOx;
-
+    @Column
     @JsonProperty("Average_NO2_GT")
     private float averageNO2GT;
-
+    @Column
     @JsonProperty("Average_PT08S4_NO2")
     private float averagePT08S4NO2;
-
+    @Column
     @JsonProperty("Average_PT08S5_O3")
     private float averagePT08S5O3;
-
+    @Column
     @JsonProperty("Average_Temperature")
     private float averageTemperature;
-
+    @Column
     @JsonProperty("Average_RelativeHumidity")
     private float averageRelativeHumidity;
-
+    @Column
     @JsonProperty("Average_AbsoluteHumidity")
     private float averageAbsoluteHumidity;
     public String getDate() {
