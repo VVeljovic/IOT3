@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Example</title>
+</head>
+<body>
+  <h1>WebSocket Example</h1>
+  <div id="messages"></div>
+
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+  <script>
+    const socket = io('http://localhost:3001'); 
+
+    socket.on('messageToClient', (message) => {
+      const messagesDiv = document.getElementById('messages');
+      const messageElement = document.createElement('div');
+      messageElement.innerText = message;
+      messagesDiv.appendChild(messageElement);
+    });
+
+    // setInterval(() => {
+    //   socket.emit('message', 'Hello from client');
+    // }, 5000);
+  </script>
+</body>
+</html>
