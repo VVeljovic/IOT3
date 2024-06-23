@@ -8,13 +8,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
-Console.WriteLine("Hello, World!");
 List<AirQualityData> airQualityDataList = new List<AirQualityData>();
 void loadFromCsv()
 {
     var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
     { HasHeaderRecord = false };
-    string csvFilePath = "C:\\Users\\veljk\\OneDrive\\Desktop\\Cetvrta godina\\IOT2\\AirQuality.csv";
+    string csvFilePath = "/sensor/config/AirQuality.csv";
     using(var reader = new StreamReader(csvFilePath))
     using(var csv = new CsvReader(reader,CultureInfo.InvariantCulture))
     {
@@ -28,16 +27,16 @@ void loadFromCsv()
     }
 }
 loadFromCsv();
-foreach(AirQualityData airQualityData in airQualityDataList)
+for(int i = 0; i < 100; i++)
 {
-    string jsonData = JsonConvert.SerializeObject(airQualityData);
+    string jsonData = JsonConvert.SerializeObject(airQualityDataList[i]);
     sendToTopic(jsonData, "air_topic");
     Thread.Sleep(500);
 }
 sendToTopic("finish", "finish_topic");
 void sendToTopic(String jsonData, String topic)
 {
-    string brokerAddress = "localhost";
+    string brokerAddress = "mosquitto";
     int port = 1883;
     string clientId = Guid.NewGuid().ToString();
     MqttClient mqttClient = new MqttClient(brokerAddress, port, false, null, null, MqttSslProtocols.None);

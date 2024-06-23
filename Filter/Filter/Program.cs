@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 Console.WriteLine("Hello, World!");
-IConnection connection = new ConnectionFactory().CreateConnection("nats://localhost:4222");
+IConnection connection = new ConnectionFactory().CreateConnection("nats://nats:4222");
 string message = "Message is: ";
 string sub1 = "sub1";
 string sub2 = "sub2";
@@ -17,9 +17,9 @@ int numberOfElements = -1;
  void Subscribe()
 {
     string clientId = Guid.NewGuid().ToString();
-    MqttClient mqttClient = new MqttClient("localhost", 1883, false, null, null, MqttSslProtocols.None);
+    MqttClient mqttClient = new MqttClient("mosquitto", 1883, false, null, null, MqttSslProtocols.None);
 
-    mqttClient.MqttMsgPublishReceived += Client_MqttMsgPublishReceived; // Attach the event handler
+    mqttClient.MqttMsgPublishReceived += Client_MqttMsgPublishReceived; 
 
     try
     {
@@ -38,6 +38,7 @@ int numberOfElements = -1;
 Subscribe();
  void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
 {
+
     if (e.Topic == "air_topic")
     {
         string message = Encoding.UTF8.GetString(e.Message);
@@ -51,6 +52,7 @@ Subscribe();
 }
 void sendToNatsTopic()
 {
+
     var groupedData = airQualityList
         .GroupBy(d => d.DateTime.Date)
         .Select(g => new
