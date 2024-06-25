@@ -42,7 +42,7 @@ public class DashboardService {
     @EventListener(ApplicationReadyEvent.class)
     public void subscribeToNats() throws IOException, InterruptedException {
         Dispatcher dispatcher = natsConfig.natsConnection().createDispatcher();
-        dispatcher.subscribe("sub1", msg -> {
+        dispatcher.subscribe("dashboard", msg -> {
             String messageContent = new String(msg.getData(), StandardCharsets.UTF_8);
             try {
                 AirQualityData airQualityData = mapper.readValue(messageContent, AirQualityData.class);

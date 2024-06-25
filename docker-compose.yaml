@@ -16,9 +16,6 @@ services:
     container_name: eKuipermanager_container
     ports:
       - "9082:9082"
-    restart: unless-stopped
-    volumes:
-      - /tmp/manager_data:/ekuiper-manager/data
     environment:
       DEFAULT_EKUIPER_ENDPOINT: "http://ekuiper:9081"
     networks:
@@ -30,15 +27,10 @@ services:
       - "9081:9081"
     container_name: ekuiper_container
     hostname: ekuiper
-    restart: unless-stopped
-    user: root
     volumes:
-      - /tmp/data:/kuiper/data
-      - /tmp/log:/kuiper/log
+      - ./eKuiper/data/init.json:/kuiper/data/init.json:ro
     environment:
       MQTT_SOURCE__DEFAULT__SERVER: "tcp://mosquitto_container2:1883"
-      KUIPER__BASIC__CONSOLELOG: "true"
-      KUIPER__BASIC__IGNORECASE: "false"
     networks:
       - iottri
 

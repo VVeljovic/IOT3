@@ -12,8 +12,9 @@ import java.io.IOException;
 
 @Configuration
 public class NatsConfig {
-  //  @Value("${nats.url}")
-    private String natsUrl = "nats://nats:4222";
+  @Value("${nats.url}")
+  private String natsUrl;
+
 
     @Bean
     public Connection natsConnection() throws IOException, InterruptedException {

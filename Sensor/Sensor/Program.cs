@@ -27,13 +27,12 @@ void loadFromCsv()
     }
 }
 loadFromCsv();
-for(int i = 0; i < 100; i++)
+foreach(var airQualityData in airQualityDataList)
 {
-    string jsonData = JsonConvert.SerializeObject(airQualityDataList[i]);
-    sendToTopic(jsonData, "air_topic");
+    string jsonData = JsonConvert.SerializeObject(airQualityData);
+    sendToTopic(jsonData, "eKuiperTopic");
     Thread.Sleep(500);
 }
-sendToTopic("finish", "finish_topic");
 void sendToTopic(String jsonData, String topic)
 {
     string brokerAddress = "mosquitto";
@@ -47,7 +46,7 @@ void sendToTopic(String jsonData, String topic)
             mqttClient.Connect(clientId);
         }
         mqttClient.Publish(topic, Encoding.UTF8.GetBytes(jsonData), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
-        Console.WriteLine($"Message '{jsonData}' published to topic 'air_topic'");
+        Console.WriteLine($"Message '{jsonData}' published to topic 'eKuiperTopic'");
     }
     catch (Exception ex)
     {
