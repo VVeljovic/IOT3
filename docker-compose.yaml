@@ -40,7 +40,6 @@ services:
       - "8222:8222"
       - "4222:4222"
     container_name: nats_container
-    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --http_port 8222 "
     networks:
     - iottri
 
@@ -56,6 +55,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=IotOrg
       - DOCKER_INFLUXDB_INIT_BUCKET=AirQualityData
       - DOCKER_INFLUXDB_INIT_RETENTION=0
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=QTcEt8MO8IIovqZinJr9POCqUc8ILjNe-qmsGxjMvoJhuX1KsHtaEcbk4ejmfbHCurD_7nTjG7WpKDl3KB7v3g==
     networks:
       - iottri
   grafana:
